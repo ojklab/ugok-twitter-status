@@ -24,7 +24,7 @@ async function handleRequest(req) {
 
   // Twitter API v2
   const baseUrl = 'https://api.twitter.com/2/users/';
-  const options = '/tweets?max_results=100&user.fields=name&tweet.fields=created_at,public_metrics&start_time=';
+  const options = '/tweets?max_results=100&tweet.fields=created_at,public_metrics&start_time=';
   const bearerToken = Deno.env.get('TwitterBearer');
 
   // 7日前の日付
@@ -38,8 +38,8 @@ async function handleRequest(req) {
   // 全ユーザに対してデータ取得（DenoDeployの制限によっては要変更？）
   for (const username of userNames) {
     // ユーザID等の取得
-    const userLookupUrl = baseUrl + 'by/username/' + username;
-    //console.log(userLookupUrl);
+    const userLookupUrl = `${baseUrl}by/username/${username}?user.fields=profile_image_url`;
+    // console.log(userLookupUrl);
     const userData = await fetch(userLookupUrl, {
       headers: {
         Authorization: 'Bearer ' + bearerToken,
@@ -79,10 +79,11 @@ async function handleRequest(req) {
       });
     }
 
-    // 成功
+    // データの記録
     const record = {};
     record.name = name;
     record.screenName = username;
+    record.iconUrl = userJson.data.profile_image_url;
     record.tweets = tlJson.data ?? [];
     data.push(record);
   }
