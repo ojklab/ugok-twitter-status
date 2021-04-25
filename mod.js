@@ -25,6 +25,7 @@ async function handleRequest(req) {
     const res = JSON.stringify({ status: 'error', user: username, message: userJson });
     return new Response(res, {
       headers: {
+        'Access-Control-Allow-Origin': 'https://ugok-girls.github.io',
         'content-type': 'application/json; charset=utf-8',
       },
     });
@@ -40,7 +41,6 @@ async function handleRequest(req) {
   const timeLineUrl = baseUrl + uid + options + startTime;
   const timeline = await fetch(timeLineUrl, {
     headers: {
-      'Access-Control-Allow-Origin': 'https://ugok-girls.github.io',
       Authorization: 'Bearer ' + bearerToken,
     },
   });
