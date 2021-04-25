@@ -93,6 +93,7 @@ async function handleRequest(req) {
   // 成功
   const res = JSON.stringify({ status: 'success', data });
   return new Response(res, {
+    mode: 'no-cors',
     headers: {
       'content-type': 'application/json; charset=utf-8',
     },
