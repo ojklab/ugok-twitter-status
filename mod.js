@@ -1,27 +1,32 @@
-// import { config } from 'https://deno.land/x/dotenv/mod.ts';
+const userNames = [
+  'asuka_ugok',
+  'UGOK_5563',
+  'usagi_UGOK',
+  'AyA3156_ugok',
+  'kumi_UGOK',
+  'ms_UGOK',
+  'yuria_ugok',
+  'misk_ugok',
+  'mami_ugok',
+  '0024_ugok',
+  'haru_ugok',
+  'natsu_ugok',
+  'sakumwu',
+  'HMDKN_5A',
+];
 
 async function handleRequest(req) {
-  const userNames = [
-    'UGOK_5563',
-    'usagi_UGOK',
-    'AyA3156_ugok',
-    'kumi_UGOK',
-    'ms_UGOK',
-    'yuria_ugok',
-    'misk_ugok',
-    'mami_ugok',
-    '0024_ugok',
-    'haru_ugok',
-    'natsu_ugok',
-    'sakumwu',
-    'HMDKN_5A',
-    'asuka_ugok',
-  ];
+  // クエリパラメータの取得
+  const url = new URL(req.url);
+  console.log(url);
+  if (url.searchParams.get('with') !== 'on') {
+    userNames.shift();
+  }
+  console.log(userNames);
 
   // Twitter API v2
   const baseUrl = 'https://api.twitter.com/2/users/';
   const options = '/tweets?max_results=100&user.fields=name&tweet.fields=created_at,public_metrics&start_time=';
-  // const bearerToken = Deno.env.get('TwitterBearer') ?? config().TwitterBearer;
   const bearerToken = Deno.env.get('TwitterBearer');
 
   // 7日前の日付
