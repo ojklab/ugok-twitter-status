@@ -18,11 +18,9 @@ const userNames = [
 async function handleRequest(req) {
   // クエリパラメータの取得
   const url = new URL(req.url);
-  console.log(url);
   if (url.searchParams.get('with') !== 'on') {
     userNames.shift();
   }
-  console.log(userNames);
 
   // Twitter API v2
   const baseUrl = 'https://api.twitter.com/2/users/';
