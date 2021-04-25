@@ -83,7 +83,9 @@ async function handleRequest(req) {
     const record = {};
     record.name = name;
     record.screenName = username;
-    record.iconUrl = userJson.data.profile_image_url;
+    const iconUrl = userJson.data.profile_image_url;
+    // _normalを取るとオリジナル
+    record.iconUrl = iconUrl.replace('_normal', '_bigger');
     record.tweets = tlJson.data ?? [];
     data.push(record);
   }
