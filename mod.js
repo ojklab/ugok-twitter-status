@@ -18,14 +18,21 @@ async function handleRequest(req) {
     'asuka_ugok',
   ];
 
+  // Twitter API v2
   const baseUrl = 'https://api.twitter.com/2/users/';
   const options = '/tweets?max_results=100&user.fields=name&tweet.fields=created_at,public_metrics&start_time=';
   // const bearerToken = Deno.env.get('TwitterBearer') ?? config().TwitterBearer;
   const bearerToken = Deno.env.get('TwitterBearer');
-  const startTime = '2021-04-17T00:00:00Z';
 
+  // 7日前の日付
+  const date = new Date();
+  date.setDate(date.getDate() - 7);
+  const startTime = date.toISOString();
+
+  // 収集したデータを入れるところ
   const data = {};
 
+  // 全ユーザに対してデータ取得（DenoDeployの制限によっては要変更？）
   for (const username of userNames) {
     const userLookupUrl = baseUrl + 'by/username/' + username;
     //console.log(userLookupUrl);
