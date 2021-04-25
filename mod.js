@@ -33,7 +33,7 @@ async function handleRequest(req) {
   const startTime = date.toISOString();
 
   // 収集したデータを入れるところ
-  const data = {};
+  const data = [];
 
   // 全ユーザに対してデータ取得（DenoDeployの制限によっては要変更？）
   for (const username of userNames) {
@@ -79,7 +79,11 @@ async function handleRequest(req) {
       });
     }
 
-    data[name] = tlJson.data ?? {};
+    const record = {};
+    record.name = name;
+    record.screenName = username;
+    record.tweets = tlJson.data ?? [];
+    data.push(record);
   }
 
   // 成功
