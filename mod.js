@@ -37,6 +37,7 @@ async function handleRequest(req) {
 
   // 全ユーザに対してデータ取得（DenoDeployの制限によっては要変更？）
   for (const username of userNames) {
+    // ユーザID等の取得
     const userLookupUrl = baseUrl + 'by/username/' + username;
     //console.log(userLookupUrl);
     const userData = await fetch(userLookupUrl, {
@@ -44,7 +45,6 @@ async function handleRequest(req) {
         Authorization: 'Bearer ' + bearerToken,
       },
     });
-
     const userJson = await userData.json();
     // console.log(userJson);
 
@@ -58,6 +58,7 @@ async function handleRequest(req) {
       });
     }
 
+    // タイムラインデータの取得
     const uid = userJson.data.id;
     const name = userJson.data.name;
     const timeLineUrl = baseUrl + uid + options + startTime;
@@ -66,7 +67,6 @@ async function handleRequest(req) {
         Authorization: 'Bearer ' + bearerToken,
       },
     });
-
     const tlJson = await timeline.json();
 
     // 失敗
@@ -79,6 +79,7 @@ async function handleRequest(req) {
       });
     }
 
+    // 成功
     const record = {};
     record.name = name;
     record.screenName = username;
