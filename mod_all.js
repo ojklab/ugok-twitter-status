@@ -1,5 +1,5 @@
 const userNames = [
-  'asuka_ugok',
+  // 'asuka_ugok',
   'UGOK_5563',
   'usagi_UGOK',
   'AyA3156_ugok',
@@ -27,9 +27,9 @@ async function handleRequest(req) {
   const options = '/tweets?max_results=100&tweet.fields=created_at,public_metrics&start_time=';
   const bearerToken = Deno.env.get('TwitterBearer');
 
-  // 7日前の日付
-  const date = new Date();
-  date.setDate(date.getDate() - 7);
+  // 区切り開始からのデータ
+  const date = new Date(2021, 9, 1);
+  // date.setDate(date.getDate() - 21);
   const startTime = date.toISOString();
 
   // 収集したデータを入れるところ
