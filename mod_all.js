@@ -28,7 +28,7 @@ async function handleRequest(req) {
   const bearerToken = Deno.env.get('TwitterBearer');
 
   // 区切り開始からのデータ
-  const date = new Date(2021, 9, 1);
+  const date = new Date(2021, 9, 25);
   // date.setDate(date.getDate() - 21);
   const startTime = date.toISOString();
 
