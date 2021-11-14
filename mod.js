@@ -32,8 +32,7 @@ async function handleRequest(req) {
   }
 
   // 実験区切りの日付
-  //  const date = new Date(2021, 10, 15);
-  const date = new Date(2021, 9, 25);
+  const date = new Date(2021, 10, 15);
   // date.setDate(date.getDate() - 7);
   const startTime = date.toISOString();
 
