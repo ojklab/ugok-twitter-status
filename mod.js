@@ -33,7 +33,8 @@ async function handleRequest(req) {
 
   // 実験区切りの日付
   // const date = new Date(2021, 11, 6);
-  // date.setDate(date.getDate() - 14);
+  const date = new Date();
+  date.setDate(date.getDate() - 14);
   const startTime = date.toISOString();
 
   // タイムラインデータの取得
