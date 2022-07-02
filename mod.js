@@ -5,7 +5,6 @@ async function handleRequest(req) {
 
   // Twitter API v2
   const bearerToken = Deno.env.get('TwitterBearer');
-  console.log(bearerToken);
   const baseUrl = 'https://api.twitter.com/2/users/';
 
   // ユーザID等の取得
