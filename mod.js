@@ -39,9 +39,9 @@ async function handleRequest(req) {
 
   // タイムラインデータの取得
   const uid = userJson.data.id;
-  // const timeLineUrl = baseUrl + uid + options + startTime;
+  const timeLineUrl = baseUrl + uid + options + startTime;
   const endDate = new Date(2021, 12, 25, 15, 0, 0).toISOString;
-  const timeLineUrl = baseUrl + uid + options + startTime + '&end_time=' + endDate;
+  // const timeLineUrl = baseUrl + uid + options + startTime + '&end_time=' + endDate;
   const timeline = await fetch(timeLineUrl, {
     headers: {
       Authorization: 'Bearer ' + bearerToken,
