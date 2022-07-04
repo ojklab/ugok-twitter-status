@@ -32,14 +32,16 @@ async function handleRequest(req) {
   }
 
   // 実験区切りの日付
-  // const date = new Date(2021, 11, 6);
-  const date = new Date();
-  date.setDate(date.getDate() - 14);
+  const date = new Date(2021, 9, 3, 15, 0, 0);
+  // const date = new Date();
+  // date.setDate(date.getDate() - 14);
   const startTime = date.toISOString();
 
   // タイムラインデータの取得
   const uid = userJson.data.id;
-  const timeLineUrl = baseUrl + uid + options + startTime;
+  // const timeLineUrl = baseUrl + uid + options + startTime;
+  const endDate = new Date(2021, 12, 25, 15, 0, 0).toISOString;
+  const timeLineUrl = baseUrl + uid + options + startTime + '&end_time=' + endDate;
   const timeline = await fetch(timeLineUrl, {
     headers: {
       Authorization: 'Bearer ' + bearerToken,
